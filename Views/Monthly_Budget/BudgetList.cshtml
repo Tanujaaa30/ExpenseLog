@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Expense_Tracker.Models.Monthly_Budget>
+@{
+    ViewBag.Title = "BudgetList";
+}
+
+@{
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<div class="container" id="container">
+    @Html.Raw(TempData["InsertMessage"])
+    @Html.Raw(TempData["UpdateMessage"])
+    <h2>Budget</h2>
+    <div class="new">
+        <a id="new" class="btn" href="/addbudget" role="button">+ Add Budget</a>
+    </div>
+    <div style="width:100%;overflow:auto; max-height:350px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Month</th>
+                    <th scope="col">Budget</th>
+                    <th scope="col">Action</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Month</td>
+                            <td>@item.Budget</td>
+                            <td>
+                                <a href="/editmonthlybudget?id=@item.Budget_Id"><i class="fa-solid fa-pen"></i></a>&emsp;
+                                <a href="/deletebudget?id=@item.Budget_Id"><i class="fa-solid fa-trash"></i></a>
+                               
+
+                            </td>
+                        </tr>
+
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
